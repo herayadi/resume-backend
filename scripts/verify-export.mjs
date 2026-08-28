@@ -16,6 +16,13 @@ for (const key of Object.keys(expected)) {
   const ids = data[key].map((item) => item.legacyId);
   if (new Set(ids).size !== ids.length) problems.push(`${key} contains duplicate legacy IDs`);
 }
+data.experiences.forEach((experience) => {
+  const bulletCount = String(experience.description || '').split(/\r?\n/).map((item) => item.trim()).filter(Boolean).length;
+  if (bulletCount < 5 || bulletCount > 6) {
+    problems.push(`Experience ${experience.legacyId} must contain 5–6 CV description bullets; received ${bulletCount}`);
+  }
+});
+
 const experienceIds = new Set(data.experiences.map((item) => item.legacyId));
 data.projects.forEach((project) => {
   if (!experienceIds.has(project.experienceLegacyId)) problems.push(`Project ${project.legacyId} has no experience`);
