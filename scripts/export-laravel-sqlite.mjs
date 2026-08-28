@@ -10,6 +10,12 @@ const sourceDatabase = process.env.LARAVEL_SQLITE_PATH
   ? path.resolve(process.env.LARAVEL_SQLITE_PATH)
   : defaultDatabase;
 const outputPath = path.resolve(__dirname, '../data/laravel-export.json');
+const existingExport = fs.existsSync(outputPath)
+  ? JSON.parse(fs.readFileSync(outputPath, 'utf8'))
+  : { experiences: [] };
+const existingDescriptions = new Map(
+  (existingExport.experiences || []).map((item) => [item.legacyId, item.description || null]),
+);
 
 if (!fs.existsSync(sourceDatabase)) {
   throw new Error(`Laravel SQLite database not found: ${sourceDatabase}`);
@@ -78,7 +84,7 @@ const exportData = {
     startDate: normalize(item.startDate),
     endDate: normalize(item.endDate),
     isCurrent: String(item.endDate).toLowerCase() === 'present',
-    description: null,
+    description: existingDescriptions.get(item.id) || null,
     sortOrder: index + 1,
   })),
   projects: rows('projects').map((item, index) => ({
