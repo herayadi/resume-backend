@@ -12,7 +12,8 @@
     "seed:resume": "node scripts/seed-resume.mjs"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.57.4",
+    "@supabase/ssr": "^0.12.5",
+    "@supabase/supabase-js": "^2.109.0",
     "dotenv": "^17.2.2",
     "next": "^15.5.9",
     "react": "^19.1.1",
