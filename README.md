@@ -16,7 +16,7 @@ Next.js App Router API, Supabase data layer, and authenticated Admin CMS for Reg
 1. Run `npm install`.
 2. Copy `.env.example` to `.env.local` and fill every value.
 3. Apply `supabase/migrations/20260828000000_create_resume_schema.sql` in the Supabase SQL Editor.
-4. Create the admin user in Supabase Auth and include its email in `ADMIN_EMAILS`.
+4. Create the admin user using `npm run seed:admin` (or `npm run seed:admin your-email@example.com yourpassword`). This creates/updates the user in Supabase Auth and updates `ADMIN_EMAILS` in `.env.local`.
 5. Run `npm run export:laravel` while the old Laravel repository is available beside `migration-workspace`, or set `LARAVEL_SQLITE_PATH` to its SQLite file.
 6. Run `npm run verify:export` and `npm run seed:resume`.
 7. Run `npm run dev`, then open `/admin`.

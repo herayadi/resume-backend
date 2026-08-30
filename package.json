@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "export:laravel": "node scripts/export-laravel-sqlite.mjs",
     "verify:export": "node scripts/verify-export.mjs",
-    "seed:resume": "node scripts/seed-resume.mjs"
+    "seed:resume": "node scripts/seed-resume.mjs",
+    "seed:admin": "node scripts/seed-admin.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.5",
