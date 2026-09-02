@@ -95,13 +95,14 @@ export default function AdminPage() {
 
   useEffect(() => {
     if (!session || signingIn.current) return;
+    const accessToken = session.access_token;
     let cancelled = false;
 
     async function checkAdminSession() {
       try {
         const response = await fetch('/api/admin/session', {
           credentials: 'same-origin',
-          headers: { Authorization: `Bearer ${session.access_token}` },
+          headers: { Authorization: `Bearer ${accessToken}` },
         });
         const payload = response.status === 204 ? {} : await response.json();
         if (!response.ok) throw new Error(payload.error || 'Your admin session has expired. Please sign in again.');
