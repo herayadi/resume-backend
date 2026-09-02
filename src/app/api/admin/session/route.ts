@@ -13,13 +13,11 @@ function sessionCookie(value: string, maxAge: number) {
   return {
     name: ADMIN_SESSION_COOKIE,
     value,
-    options: {
-      httpOnly: true,
-      sameSite: 'lax' as const,
-      secure: process.env.NODE_ENV === 'production',
-      path: '/api/admin',
-      maxAge,
-    },
+    httpOnly: true,
+    sameSite: 'lax' as const,
+    secure: process.env.NODE_ENV === 'production',
+    path: '/api/admin',
+    maxAge,
   };
 }
 
